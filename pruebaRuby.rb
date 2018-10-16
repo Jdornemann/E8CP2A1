@@ -1,13 +1,8 @@
 
-
-# David, 9, 2, 5,
-# Gonzalo, 10, 2,
-# Mai, 10, 10, 9,
-# JP, 10, 10, 10,
-# 1, 1
-# A, 8, 1
-# 9, A
-# 10, 10
+# David, 9, 2, 5,1, 1
+# Gonzalo, 10, 2,A, 8, 1
+# Mai, 10, 10, 9,9, A
+# JP, 10, 10, 10,10, 10
 
 
 def show_menu
@@ -25,39 +20,70 @@ end
 def makeFileAVG
 
     puts "aqui debes generar promedio"
-    validateOptionMenu
+ 
+    lines = []
+    
+     File.open('archivo.cvs','r'){|file| lines = file.readlines}
+     nombre = Array.new
+    lines.each do |line|
+        array_line = []
+        nombre = line.split(', ')[0]
+        notas = line.split(', ').map(&:to_i)
+     
+        suma = 0
+        notas.delete(0)
+        notas.each do |x|
+            suma += x 
+    
+        end
+
+        File.open(nombre + '.cvs','w') do |write|
+        
+            write.puts "Promedio:" + (suma/notas.length).to_s
+       
+        end
+        # puts suma
+        # puts notas.length
+
+    end
+ validateOptionMenu
+   
 end
 
-def inasistenciasTotal
+def totalAbsences
  puts "aquí hacer las inasistencias totales"
  validateOptionMenu
 end
 
-def alumnosAprobados
+def studentsPassed
 
     puts "Aqui van los alumnos aprobados"
     validateOptionMenu
 end
 
+def GradeVerificationQualification
+
+end
+
 def validateOptionMenu
 
-    opcion = show_menu
+    option = show_menu
 
-    while opcion != 0
+    while option != 0
 
-            case opcion
+            case option
             when 1
                 puts "soy 1"
                 makeFileAVG
             when 2
                 
                 puts "soy 2" 
-                inasistenciasTotal
+                totalAbsences
 
             when 3
                 
                 puts "soy 3"
-                alumnosAprobados
+                studentsPassed
                 
             when 4
                 puts "soy 4"
