@@ -85,7 +85,7 @@ def validateOptionMenu
                 puts "soy 3"
                 studentsPassed
                 
-            when 4
+            when 4 
                 puts "soy 4"
                 exit
 
